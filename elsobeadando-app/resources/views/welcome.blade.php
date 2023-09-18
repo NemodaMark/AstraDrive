@@ -136,10 +136,10 @@
         </main>
     </div>
 <!--BGMUSIC-->
-<audio id="bgaudio" controls preload autoplay loop>
+<audio id="bgmusic" controls preload autoplay loop>
         <source src="{{asset('bgmusic.mp3')}}" type="audio/mpeg">
             <script>
-                var audio = document.getElementById("bgaudio");
+                var audio = document.getElementById("bgmusic");
                 audio.volume = 0.08;
                 audio.controls = false;
               </script>
