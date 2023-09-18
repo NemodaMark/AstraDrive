@@ -33,9 +33,26 @@
         min-width: 100%;
         min-height: 100%;
         filter: brightness(50%);
+        z-index:-1;
+        }
+
+        .btconatiner{
+            height: 700px;
+            width: 2000px;
+            /* border: 1px solid red; */
+            display: table-cell;
+            vertical-align: bottom;
+        }
+
+        .tab {
+            display: inline-block;
+            margin-left: 8.5rem;
+        }
+        #buttons{
+            /* border: 1px solid green; */
+            height: 50px;
         }
     </style>
-
 
     <video preload="auto" preload muted autoplay loop>
         <source src="{{asset('bgvideo.mp4')}}" type="video/mp4">
@@ -105,8 +122,16 @@
         </nav>
 
         <main class="py-4">
-            <div class="container">
-
+            <div class="btconatiner">
+                <div class="row align-items-end">
+                    <div class="col"></div>
+                    <div class="col" id="buttons">
+                        <a name="" id="" class="btn btn-light opacity-75 btn-lg" href="#" role="button">Nézd meg az oktató anyagot</a>
+                        <span class="tab"></span>
+                        <a name="" id="" class="btn btn-dark opacity-75 btn-lg mx-10" href="#" role="button">Teszteld a tudásod</a>
+                    </div>
+                    <div class="col"></div>
+                </div>
             </div>
         </main>
     </div>

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::put('/themes', function(Request $request) {
+//     $request->validate([
+//        'theme' => ['required', Rule::in(['darkly', 'cerulean'])]
+//     ]);
+
+//     session(['theme' => $request->theme]);
+//     return back();
+//  })->name('themes.update');
