@@ -24,7 +24,7 @@
 <body>
     <style>
         video {
-        object-fit: fill; // use "cover" to avoid distortion
+        object-fit: fill; /* use "cover" to avoid distortion */
         position: absolute;
         pointer-events: none;
         position: fixed;
@@ -135,5 +135,14 @@
             </div>
         </main>
     </div>
+<!--BGMUSIC-->
+<audio id="bgaudio" controls preload autoplay loop>
+        <source src="{{asset('bgmusic.mp3')}}" type="audio/mpeg">
+            <script>
+                var audio = document.getElementById("bgaudio");
+                audio.volume = 0.08;
+                audio.controls = false;
+              </script>
+</audio>
 </body>
 </html>
