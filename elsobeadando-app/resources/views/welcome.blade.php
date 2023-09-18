@@ -35,7 +35,6 @@
         filter: brightness(50%);
         z-index:-1;
         }
-
         .btconatiner{
             height: 700px;
             width: 2000px;
@@ -43,7 +42,6 @@
             display: table-cell;
             vertical-align: bottom;
         }
-
         .tab {
             display: inline-block;
             margin-left: 8.5rem;
@@ -136,7 +134,7 @@
         </main>
     </div>
 <!--BGMUSIC-->
-<audio id="bgmusic" controls preload autoplay loop>
+<audio id="bgmusic" preload autoplay loop>
         <source src="{{asset('bgmusic.mp3')}}" type="audio/mpeg">
             <script>
                 var audio = document.getElementById("bgmusic");
