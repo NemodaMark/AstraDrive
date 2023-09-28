@@ -22,6 +22,26 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
+    <script type="text/javascript">
+        function gcd (a, b) {
+            return (b == 0) ? a : gcd (b, a%b);
+        }
+        var w = screen.width;
+        var h = screen.height;
+        var r = gcd (w, h);
+        console.log ("<pre>");
+        console.log ("Dimensions = ", w, " x ", h, "<br>");
+        console.log ("Gcd        = ", r, "<br>");
+        console.log ("Aspect     = ", w/r, ":", h/r);
+        console.log ("</pre>");
+        if (w/r > 4 & h/r > 3) {
+            console.log("kissebb")
+        }else if (w/r == 4 & h/r == 3)
+            console.log("4:3")
+        else if (w/r <= 16 & h/r <= 9) {
+            document.getElementById("bgvideo")
+        }
+    </script>
     <style>
         video {
         object-fit: fill; /* use "cover" to avoid distortion */
@@ -54,9 +74,7 @@
     </style>
 
 
-    <video preload="auto" preload muted autoplay loop>
-        <source src="{{asset('bgvideo.mp4')}}" type="video/mp4">
-    </video>
+    <video id="bgvideo" preload="auto" preload muted autoplay loop src="{{asset('bgvideo.mp4')}}" type="video/mp4"></video>
 
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-transparent shadow-sm">
@@ -139,31 +157,6 @@
             </div>
         </main>
     </div>
-
-    <script>
-        // Function to update the position of the buttons
-        function updateButtonPosition() {
-            const screenWidth = window.innerWidth;
-            const screenHeight = window.innerHeight;
-            const buttonContainer = document.querySelector('.btcontainer');
-
-            // Check if the screen width is 773 pixels or more
-            if (screenWidth >= 773) {
-                buttonContainer.style.flexDirection = 'row'; // Display buttons in the same row
-            } else {
-                buttonContainer.style.flexDirection = 'column'; // Display buttons in a column
-            }
-
-            buttonContainer.style.bottom = `${Math.max(0, screenHeight - 200)}px`;
-        }
-
-        // Call the updateButtonPosition function initially
-        updateButtonPosition();
-
-        // Listen for window resize events and update the position accordingly
-        window.addEventListener('resize', updateButtonPosition);
-    </script>
-
 <!--BGMUSIC-->
 <audio id="bgmusic" preload autoplay loop>
         <source src="{{asset('bgmusic.mp3')}}" type="audio/mpeg">
