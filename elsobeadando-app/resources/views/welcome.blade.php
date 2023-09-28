@@ -20,31 +20,47 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3/dist/js.cookie.min.js"></script>
+
 </head>
 <body>
-    <script type="text/javascript">
-        function gcd (a, b) {
-            return (b == 0) ? a : gcd (b, a%b);
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3/dist/js.cookie.min.js"></script>
+    <script>
+    const themeSwitcher = document.getElementById('btnSwitch');
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+
+    // Function to toggle the theme
+    const toggleTheme = () => {
+        if (currentTheme === 'light') {
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
+            document.getElementById('navbarIcon').src = "{{ asset('imgs/logoLight.png') }}";
+            Cookies.set('theme', 'dark'); // Save the theme in a cookie
+        } else {
+            document.documentElement.setAttribute('data-bs-theme', 'light');
+            document.getElementById('navbarIcon').src = "{{ asset('imgs/logo.png') }}";
+            Cookies.set('theme', 'light'); // Save the theme in a cookie
         }
-        var w = screen.width;
-        var h = screen.height;
-        var r = gcd (w, h);
-        console.log ("<pre>");
-        console.log ("Dimensions = ", w, " x ", h, "<br>");
-        console.log ("Gcd        = ", r, "<br>");
-        console.log ("Aspect     = ", w/r, ":", h/r);
-        console.log ("</pre>");
-        if (w/r > 4 & h/r > 3) {
-            console.log("kissebb")
-        }else if (w/r == 4 & h/r == 3)
-            console.log("4:3")
-        else if (w/r <= 16 & h/r <= 9) {
-            document.getElementById("bgvideo")
+    };
+
+    // Event listener for theme switcher button
+    themeSwitcher.addEventListener('click', toggleTheme);
+
+    // Check if a theme cookie exists and set the theme accordingly
+    const savedTheme = Cookies.get('theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-bs-theme', savedTheme);
+        if (savedTheme === 'dark') {
+            document.getElementById('navbarIcon').src = "{{ asset('imgs/logoLight.png') }}";
+        } else {
+            document.getElementById('navbarIcon').src = "{{ asset('imgs/logo.png') }}";
         }
+    }
     </script>
+
     <style>
         video {
-        object-fit: fill; /* use "cover" to avoid distortion */
+        object-fit: cover;
         position: absolute;
         pointer-events: none;
         position: fixed;
@@ -55,6 +71,11 @@
         filter: brightness(50%);
         z-index:-1;
         }
+
+        .phone-video {
+        width: 50%; /* Adjust this value as needed */
+        height: 50%; /* Adjust this value as needed */
+    }
         .tab {
             display: inline-block;
             margin-left: 8.5rem;
@@ -74,7 +95,48 @@
     </style>
 
 
-    <video id="bgvideo" preload="auto" preload muted autoplay loop src="{{asset('bgvideo.mp4')}}" type="video/mp4"></video>
+<video id="bgvideo" preload="auto" muted autoplay loop type="video/mp4"></video>
+
+<script type="text/javascript">
+    function gcd(a, b) {
+        return b == 0 ? a : gcd(b, a % b);
+    }
+
+    function setVideoSource() {
+        var w = screen.width;
+        var h = screen.height;
+        var r = gcd(w, h);
+
+        console.log("<pre>");
+        console.log("Dimensions = ", w, " x ", h, "<br>");
+        console.log("Gcd        = ", r, "<br>");
+        console.log("Aspect     = ", w / r, ":", h / r);
+        console.log("</pre>");
+
+        var videoElement = document.getElementById("bgvideo");
+
+        if (w / h !== 16 / 9 && w / h !== 4 / 3) {
+    videoElement.src = "phone.mp4";
+    videoElement.classList.add("phone-video");
+    //resize the video to fit in
+} else if (w / h === 4 / 3) {
+    videoElement.src = "pc.mp4"; // Replace with the actual video file path
+    videoElement.classList.add("phone-video");
+
+} else {
+    // Set the source to the PC video for other aspect ratios
+    videoElement.src = "pc.mp4"; // Replace with the actual video file path
+}
+
+
+        // Load and play the selected video
+        videoElement.load();
+        videoElement.play();
+    }
+
+    // Wait for the DOM to be fully loaded before running the code
+    document.addEventListener("DOMContentLoaded", setVideoSource);
+</script>
 
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-transparent shadow-sm">
@@ -96,6 +158,11 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+
+                        <a class="nav-link" href="{{route('copyright')}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-c-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM8.146 4.992c.961 0 1.641.633 1.729 1.512h1.295v-.088c-.094-1.518-1.348-2.572-3.03-2.572-2.068 0-3.269 1.377-3.269 3.638v1.073c0 2.267 1.178 3.603 3.27 3.603 1.675 0 2.93-1.02 3.029-2.467v-.093H9.875c-.088.832-.75 1.418-1.729 1.418-1.224 0-1.927-.891-1.927-2.461v-1.06c0-1.583.715-2.503 1.927-2.503Z"/>
+                          </svg></a>
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -115,18 +182,19 @@
                                     </svg></a>
                                 </li>
                             @endif
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-c-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM8.146 4.992c.961 0 1.641.633 1.729 1.512h1.295v-.088c-.094-1.518-1.348-2.572-3.03-2.572-2.068 0-3.269 1.377-3.269 3.638v1.073c0 2.267 1.178 3.603 3.27 3.603 1.675 0 2.93-1.02 3.029-2.467v-.093H9.875c-.088.832-.75 1.418-1.729 1.418-1.224 0-1.927-.891-1.927-2.461v-1.06c0-1.583.715-2.503 1.927-2.503Z"/>
-                                  </svg></a>
-                            </li>
                         @else
+                        <li class="nav-item">
+                        </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                        {{ __('Garázs') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -149,8 +217,8 @@
                 <div class="row align-items-end text-center">
                     <div class="col-3"></div>
                     <div class="col-6" id="buttons">
-                        <a name="" id="" class="btn btn-dark opacity-75 btn-lg mx-3 my-2" href="#" role="button">Teszteld a tudásod</a>
-                        <a name="" id="" class="btn btn-light opacity-75 btn-lg mx-3 my-2" href="#" role="button">Nézd meg az oktató anyagot</a>
+                        <a name="" id="" class="btn btn-dark opacity-75 btn-lg mx-3 my-2" href="{{route('quiz')}}" role="button">Teszteld a tudásod</a>
+                        <a name="" id="" class="btn btn-light opacity-75 btn-lg mx-3 my-2" href="{{route('informations')}}" role="button">Nézd meg az oktató anyagot</a>
                     </div>
                     <div class="col-3"></div>
                 </div>

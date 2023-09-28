@@ -20,12 +20,18 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3/dist/js.cookie.min.js"></script>
 </head>
 <body>
     <style>
          body {
             overflow-y: hidden; /* Hide vertical scrollbar */
             overflow-x: hidden; /* Hide horizontal scrollbar */
+        }
+        .profile{
+            max-width: 3rem;
+            max-height: 3rem;
+            border-radius: 50%
         }
     </style>
 
@@ -42,10 +48,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item ms-5">
-                            <a class="nav-link" href="#">Tananyagtár</a>
-                          </li>
-                          <li class="nav-item ms-2">
-                            <a class="nav-link" href="#">Teszt</a>
+                            <a class="nav-link" href="{{route('informations')}}">Astra-lógia</a>
                           </li>
                           <li class="nav-item ms-2">
                             <a class="nav-link" href="#">Dokumentáció</a>
@@ -53,26 +56,59 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
+
                     <ul class="navbar-nav ms-auto">
+                        <a class="nav-link" href="{{route('copyright')}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-c-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM8.146 4.992c.961 0 1.641.633 1.729 1.512h1.295v-.088c-.094-1.518-1.348-2.572-3.03-2.572-2.068 0-3.269 1.377-3.269 3.638v1.073c0 2.267 1.178 3.603 3.27 3.603 1.675 0 2.93-1.02 3.029-2.467v-.093H9.875c-.088.832-.75 1.418-1.729 1.418-1.224 0-1.927-.891-1.927-2.461v-1.06c0-1.583.715-2.503 1.927-2.503Z"/>
+                          </svg></a>
+
                         <!--Dark Mode begin-->
                         <html data-bs-theme="light">
                             <button class="nav-link" id="btnSwitch"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-alt-high-fill" viewBox="0 0 16 16">
                                 <path d="M8 3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 3zm8 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zm-13.5.5a.5.5 0 0 0 0-1h-2a.5.5 0 0 0 0 1h2zm11.157-6.157a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm-9.9 2.121a.5.5 0 0 0 .707-.707L3.05 5.343a.5.5 0 1 0-.707.707l1.414 1.414zM8 7a4 4 0 0 0-4 4 .5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5 4 4 0 0 0-4-4z"/>
                               </svg></button>
 
-                    <script>
-                        document.getElementById('btnSwitch').addEventListener('click',()=>{
-                    if (document.documentElement.getAttribute('data-bs-theme') == 'light') {
-                        document.documentElement.setAttribute('data-bs-theme','dark')
-                        document.getElementById("navbarIcon").src = "{{asset('imgs/logoLight.png')}}";
-                    }
-                    else {
-                        document.documentElement.setAttribute('data-bs-theme','light')
-                        document.getElementById("navbarIcon").src = "{{asset('imgs/logo.png')}}";
+                              <script>
+                                const themeSwitcher = document.getElementById('btnSwitch');
 
-                    }
-                })
-                </script>
+                                // Function to toggle the theme
+                                const toggleTheme = () => {
+                                    const currentTheme = document.documentElement.getAttribute('data-bs-theme'); // Moved inside the function
+                                    console.log("Clicked!"); // Debugging statement
+                                    if (currentTheme === 'light') {
+                                        document.documentElement.setAttribute('data-bs-theme', 'dark');
+                                        console.log("Switched to dark theme!"); // Debugging statement
+                                        // Change the following line to the correct asset path for your logo
+                                        document.getElementById('navbarIcon').src = "{{ asset('imgs/logoLight.png') }}";
+                                        Cookies.set('theme', 'dark'); // Save the theme in a cookie
+                                    } else {
+                                        document.documentElement.setAttribute('data-bs-theme', 'light');
+                                        console.log("Switched to light theme!"); // Debugging statement
+                                        // Change the following line to the correct asset path for your logo
+                                        document.getElementById('navbarIcon').src = "{{ asset('imgs/logo.png') }}";
+                                        Cookies.set('theme', 'light'); // Save the theme in a cookie
+                                    }
+                                };
+
+                                // Event listener for theme switcher button
+                                themeSwitcher.addEventListener('click', toggleTheme);
+
+                                // Check if a theme cookie exists and set the theme accordingly
+                                const savedTheme = Cookies.get('theme');
+                                if (savedTheme) {
+                                    document.documentElement.setAttribute('data-bs-theme', savedTheme);
+                                    // Change the following lines to the correct asset paths for your logos
+                                    if (savedTheme === 'dark') {
+                                        document.getElementById('navbarIcon').src = "{{ asset('imgs/logoLight.png') }}";
+                                    } else {
+                                        document.getElementById('navbarIcon').src = "{{ asset('imgs/logo.png') }}";
+                                    }
+                                    console.log("Loaded saved theme:", savedTheme); // Debugging statement
+                                }
+                            </script>
+
+
+
                     <!--dark mode end-->
                         <!-- Authentication Links -->
                         @guest
@@ -93,11 +129,6 @@
                                       </svg></a>
                                 </li>
                             @endif
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-c-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM8.146 4.992c.961 0 1.641.633 1.729 1.512h1.295v-.088c-.094-1.518-1.348-2.572-3.03-2.572-2.068 0-3.269 1.377-3.269 3.638v1.073c0 2.267 1.178 3.603 3.27 3.603 1.675 0 2.93-1.02 3.029-2.467v-.093H9.875c-.088.832-.75 1.418-1.729 1.418-1.224 0-1.927-.891-1.927-2.461v-1.06c0-1.583.715-2.503 1.927-2.503Z"/>
-                                  </svg></a>
-                            </li>
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -105,6 +136,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="{{route('home')}}">
+                                        {{ __('Garázs') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -116,6 +152,7 @@
                                     </form>
                                 </div>
                             </li>
+                            <img src="{{asset('imgs/profilepics/03.png')}}" alt="Avatar" class="profile">
                         @endguest
                     </ul>
                 </div>
