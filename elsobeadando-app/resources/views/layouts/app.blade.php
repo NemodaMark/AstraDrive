@@ -42,7 +42,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item ms-5">
-                            <a class="nav-link" href="#">Tananyag tár</a>
+                            <a class="nav-link" href="#">Tananyagtár</a>
                           </li>
                           <li class="nav-item ms-2">
                             <a class="nav-link" href="#">Teszt</a>
