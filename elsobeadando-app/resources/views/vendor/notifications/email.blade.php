@@ -47,8 +47,8 @@
 @isset($actionText)
 <x-slot:subcopy>
 @lang(
-    "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
-    'into your web browser:',
+    "Amennyiben problémáid vannak a \":actionText\" gombbal, másold ki és illeszd be a fenti keresősávba az alábbi linket\n".
+    'a webböngésződben:',
     [
         'actionText' => $actionText,
     ]
