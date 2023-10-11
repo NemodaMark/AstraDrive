@@ -23,11 +23,11 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Felhasználó név</td>
+                                        <td>Felhasználónév</td>
                                         <td>"inform"</td>
                                     </tr>
                                     <tr>
-                                        <td>Email cím</td>
+                                        <td>E-mail cím</td>
                                         <td>"inform"</td>
                                     </tr>
                                     <tr>
@@ -66,11 +66,11 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Felhasználó név</td>
+                                        <td>Felhasználónév</td>
                                         <td>"inform"</td>
                                     </tr>
                                     <tr>
-                                        <td>Email cím</td>
+                                        <td>E-mail cím</td>
                                         <td>"inform"</td>
                                     </tr>
                                     <tr>
