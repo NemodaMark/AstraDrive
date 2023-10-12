@@ -12,7 +12,12 @@
                         <a class="nav-link" data-tab="tab2" href="#">Az eredeti videó tanagyag</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-tab="tab3" href="#">Opel Kupa</a>
+                        <a class="nav-link" data-tab="tab3" href="#">Gyártás</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-tab="tab4" href="#">Opel Kupa</a>
+                    </li>
+
                 </ul>
             </div>
 
@@ -28,6 +33,11 @@
                     <p class="card-text">OPEL ASTRA F személygépkocsi bemutatása, gyártása, kezelési és karbantartási útmutató</p>
                 </div>
                 <div id="tab3" class="tab-content" style="display: none;"> <!-- Content for tab 3 -->
+                    <h3 class="card-title">Opel Astra F gyártása Magyarországon</h3>
+                    <iframe width="800" height="600"  src="https://www.youtube.com/embed/vvGJZKavU0o?si=uaFd6RDWo8sZv-9Y"></iframe>
+                    <p class="card-text">Gyártásbemutató kisfilm a '90-es évek elejéről.</p>
+                </div>
+                <div id="tab4" class="tab-content" style="display: none;"> <!-- Content for tab 4 -->
                     <h3 class="card-title">2002-es Opel Kupa (Rábaring)</h3>
                     <iframe width="800" height="600"  src="https://www.youtube.com/embed/g-ypPq5wxa4?si=LbAqCMxm1kOWWjlM"></iframe>
                     <p class="card-text">2005-ig éves rendszerességű eseményként tartották meg Magyarországon.</p>
