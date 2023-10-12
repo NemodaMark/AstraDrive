@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Confirm Password') }}</div>
+                <div class="card-header">{{ __('Jelszó megerősítése') }}</div>
 
                 <div class="card-body">
-                    {{ __('Please confirm your password before continuing.') }}
+                    {{ __('Kérlek, erősítsd meg a jelszavad mielött továbbhaladnál!') }}
 
                     <form method="POST" action="{{ route('password.confirm') }}">
                         @csrf
@@ -30,12 +30,12 @@
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Confirm Password') }}
+                                    {{ __('Jelszó megerősítése') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        {{ __('Elfelejtetted a jelszavad?') }}
                                     </a>
                                 @endif
                             </div>
