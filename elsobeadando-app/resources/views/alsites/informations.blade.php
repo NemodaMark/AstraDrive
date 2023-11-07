@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('content')
+<style>.youtube-video {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}</style>
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card text-center">
@@ -21,25 +25,25 @@
                 </ul>
             </div>
 
-            <div class="card-body">
+            <div class="card-body" >
                 <div id="tab1" class="tab-content"> <!-- Content for tab 1 -->
                     <h5 class="card-title">Interaktív tananyag</h5>
-                    <iframe src="https://onedrive.live.com/embed?resid=4ABE77F844B529FD%2160416&amp;authkey=!ANR4SIuNq_LllSQ&amp;em=2&amp;wdAr=1.7777777777777777" width="476px" height="288px" frameborder="0">Ez egy beágyazott <a target="_blank" href="https://office.com">Microsoft Office</a>-bemutató, amelynek szolgáltatója a(z) <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
+                    <iframe class="youtube-video"width="100%" height="100%" src="https://onedrive.live.com/embed?resid=4ABE77F844B529FD%2160416&amp;authkey=!ANR4SIuNq_LllSQ&amp;em=2&amp;wdAr=1.7777777777777777"cframeborder="0">Ez egy beágyazott <a target="_blank" href="https://office.com">Microsoft Office</a>-bemutató, amelynek szolgáltatója a(z) <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
                 </div>
 
                 <div id="tab2" class="tab-content" style="display: none;"> <!-- Content for tab 2 -->
                     <h3 class="card-title">Az autóhoz járó gyári kazetta:</h3>
-                    <iframe width="800" height="600"  src="https://www.youtube.com/embed/V3jd5Ob0KBI"></iframe>
+                    <iframe class="youtube-video" src="https://www.youtube.com/embed/V3jd5Ob0KBI?si=p8gUyouqeuMTIeBv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <p class="card-text">OPEL ASTRA F személygépkocsi bemutatása, gyártása, kezelési és karbantartási útmutató</p>
                 </div>
                 <div id="tab3" class="tab-content" style="display: none;"> <!-- Content for tab 3 -->
                     <h3 class="card-title">Opel Astra F gyártása Magyarországon</h3>
-                    <iframe width="800" height="600"  src="https://www.youtube.com/embed/vvGJZKavU0o?si=uaFd6RDWo8sZv-9Y"></iframe>
+                    <iframe class="youtube-video" src="https://www.youtube.com/embed/vvGJZKavU0o?si=uaFd6RDWo8sZv-9Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <p class="card-text">Gyártásbemutató kisfilm a '90-es évek elejéről.</p>
                 </div>
                 <div id="tab4" class="tab-content" style="display: none;"> <!-- Content for tab 4 -->
                     <h3 class="card-title">2002-es Opel Kupa (Rábaring)</h3>
-                    <iframe width="800" height="600"  src="https://www.youtube.com/embed/g-ypPq5wxa4?si=LbAqCMxm1kOWWjlM"></iframe>
+                    <iframe class="youtube-video" src="https://www.youtube.com/embed/g-ypPq5wxa4?si=LbAqCMxm1kOWWjlM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <p class="card-text">2005-ig éves rendszerességű eseményként tartották meg Magyarországon.</p>
                 </div>
             </div>

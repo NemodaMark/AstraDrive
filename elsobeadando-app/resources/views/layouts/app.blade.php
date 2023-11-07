@@ -24,10 +24,9 @@
 </head>
 <body>
     <style>
-         body {
-            overflow-y: hidden; /* Hide vertical scrollbar */
-            overflow-x: hidden; /* Hide horizontal scrollbar */
-        }
+         /* body {
+            /* overflow-y: hidden; Hide vertical scrollbar */
+            /* overflow-x: hidden; Hide horizontal scrollbar */
         .profile{
             max-width: 3rem;
             max-height: 3rem;
