@@ -93,11 +93,7 @@ button.btn {
         <div class="card">
             <div class="card-header">{{ __('Felhasznált tartalmak') }}</div>
             <div class="card-body">           
-                <h4>Hang-és videóanyag</h4>
-                <a ></a> -  <br>
-                <a ></a> -  <br>
-                <a ></a> -  <br>
-                
+                <h4>Hang-és videóanyag</h4>                
                 <a href="https://onedrive.live.com/embed?resid=4ABE77F844B529FD%2160416&amp;authkey=!ANR4SIuNq_LllSQ&amp;em=2&amp;wdAr=1.7777777777777777" target="_Blank">Astra Interaktív tananyag</a> - Szerző : <a href="https://github.com/NemodaMark/opel" target="_Blank">Réz Levente László & Nemoda Márk Levente</a>
                 
                 <hr>
