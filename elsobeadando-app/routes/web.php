@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuizController;
+
 // use Illuminate\Support\Facades\Request;
 
 /*
@@ -25,7 +27,8 @@ Route::get('/parkinglot', [App\Http\Controllers\HomeController::class, 'parkingl
 /*Navbar*/
     Route::get('/informations', [App\Http\Controllers\HomeController::class, 'informations'])->name('informations');
     Route::get('/documentary', [App\Http\Controllers\HomeController::class, 'documentary'])->name('documentary');
-    Route::get('/quiz', [App\Http\Controllers\HomeController::class, 'quiz'])->name('quiz');
+    Route::get('/quiz', [QuizController::class, 'show'])->name('quiz.show');
+    Route::post('/quiz/submit', [QuizController::class, 'submit'])->name('quiz.submit');
     Route::get('/copyright', [App\Http\Controllers\Controller::class, 'copyright'])->name('copyright');
 
 

@@ -217,7 +217,7 @@
                 <div class="row align-items-end text-center">
                     <div class="col-3"></div>
                     <div class="col-6" id="buttons">
-                        <a name="" id="" class="btn btn-dark opacity-75 btn-lg mx-3 my-2" href="{{route('quiz')}}" role="button">Teszteld a tudásod</a>
+                    <a name="" id="" class="btn btn-dark opacity-75 btn-lg mx-3 my-2" href="{{ route('quiz.show') }}" role="button">Teszteld a tudásod</a>
                         <a name="" id="" class="btn btn-light opacity-75 btn-lg mx-3 my-2" href="{{route('informations')}}" role="button">Nézd meg az oktató anyagot</a>
                     </div>
                     <div class="col-3"></div>
