@@ -27,23 +27,8 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function informations()
-    {
-        return view('alsites.informations');
-    }
-
-    public function documentary()
-    {
-        return view('alsites.documentary');
-    }
-
     public function parkinglot()
     {
         return view('alsites.parkinglot');
-    }
-
-    public function quiz()
-    {
-        return view('alsites.quiz');
     }
 }

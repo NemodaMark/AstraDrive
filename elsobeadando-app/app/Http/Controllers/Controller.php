@@ -15,4 +15,19 @@ class Controller extends BaseController
     {
         return view('alsites.copyright');
     }
+
+    public function informations()
+    {
+        return view('alsites.informations');
+    }
+
+    public function documentary()
+    {
+        return view('alsites.documentary');
+    }
+
+    public function quiz()
+    {
+        return view('alsites.quiz');
+    }
 }
