@@ -7,9 +7,7 @@
     {{-- start css and stylesheets --}}
     <link rel="stylesheet" href="{{asset('css/style.css')}}"/>
     <link rel="icon" type="image/x-icon" href="{{asset('imgs/favicon.ico')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-</head>    {{-- end --}}
+    {{-- end --}}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,17 +17,15 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3/dist/js.cookie.min.js"></script>
 </head>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <style>
-             @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+{{--
+s.com/css2?family=Noto+Sans&display=swap');
     * {
         margin: 0;
         padding: 0;
@@ -42,7 +38,7 @@
             max-height: 3rem;
             border-radius: 50%
         }
-    </style>
+    </style> --}}
 
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-transparent shadow-sm">
@@ -239,10 +235,7 @@
                                     }
                                 });
                             </script>
-
-
-                    <!--dark mode end-->
-                        <!-- Authentication Links -->
+                                      <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">

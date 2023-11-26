@@ -1,9 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<style>.youtube-video {
-  aspect-ratio: 16 / 9;
-  width: 100%;
-}</style>
+<style>
+    .youtube-video {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+    }
+</style>
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card text-center">
@@ -21,14 +23,13 @@
                     <li class="nav-item">
                         <a class="nav-link" data-tab="tab4" href="#">Opel Kupa</a>
                     </li>
-
                 </ul>
             </div>
 
-            <div class="card-body" >
+            <div class="card-body">
                 <div id="tab1" class="tab-content"> <!-- Content for tab 1 -->
                     <h5 class="card-title">Interaktív tananyag</h5>
-                    <iframe class="youtube-video"width="100%" height="100%" src="https://onedrive.live.com/embed?resid=4ABE77F844B529FD%2160416&amp;authkey=!ANR4SIuNq_LllSQ&amp;em=2&amp;wdAr=1.7777777777777777"cframeborder="0">Ez egy beágyazott <a target="_blank" href="https://office.com">Microsoft Office</a>-bemutató, amelynek szolgáltatója a(z) <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
+                    <iframe class="youtube-video" width="100%" height="100%" src="https://onedrive.live.com/embed?resid=4ABE77F844B529FD%2160416&amp;authkey=!ANR4SIuNq_LllSQ&amp;em=2&amp;wdAr=1.7777777777777777" frameborder="0">Ez egy beágyazott <a target="_blank" href="https://office.com">Microsoft Office</a>-bemutató, amelynek szolgáltatója a(z) <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
                 </div>
 
                 <div id="tab2" class="tab-content" style="display: none;"> <!-- Content for tab 2 -->
@@ -51,32 +52,60 @@
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // JavaScript to handle tab switching
+        const tabs = document.querySelectorAll('.nav-link');
+        const tabContents = document.querySelectorAll('.tab-content');
 
-//Még át kell nézni, a "copyright" résznél sajnos buggos, szinte 100% hogy itt akad el :D
-
-    // JavaScript to handle tab switching
-    document.querySelectorAll('.nav-link').forEach(function(tabLink) {
-        tabLink.addEventListener('click', function(event) {
-            event.preventDefault();
-
-            // Remove 'active' class from all tab links
-            document.querySelectorAll('.nav-link').forEach(function(link) {
-                link.classList.remove('active');
-            });
-
-            // Add 'active' class to the clicked tab link
-            tabLink.classList.add('active');
-
-            // Hide all tab content
-            document.querySelectorAll('.tab-content').forEach(function(content) {
+        // Function to show the corresponding tab content
+        const showTabContent = (tabId) => {
+            tabContents.forEach(content => {
                 content.style.display = 'none';
             });
 
-            // Show the corresponding tab content
-            const tabId = tabLink.getAttribute('data-tab');
-            document.getElementById(tabId).style.display = 'block';
+            const tabContent = document.getElementById(tabId);
+            if (tabContent) {
+                tabContent.style.display = 'block';
+            }
+        };
+
+        // Event listener for tab clicks
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                // Remove 'active' class from all tab links
+                tabs.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // Add 'active' class to the clicked tab link
+                tab.classList.add('active');
+
+                // Show the corresponding tab content
+                const tabId = tab.getAttribute('data-tab');
+                showTabContent(tabId);
+
+                // Save the active tab to a cookie
+                Cookies.set('activeTab', tabId);
+            });
         });
+
+        // Check if a cookie exists for the active tab and set it
+        const savedActiveTab = Cookies.get('activeTab');
+        if (savedActiveTab) {
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            const savedTab = document.querySelector(`[data-tab="${savedActiveTab}"]`);
+            if (savedTab) {
+                savedTab.classList.add('active');
+                showTabContent(savedActiveTab);
+            }
+        }
     });
 </script>
 @endsection
