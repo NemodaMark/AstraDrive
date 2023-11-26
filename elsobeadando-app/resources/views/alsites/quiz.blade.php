@@ -25,7 +25,7 @@
         </form>
 
         @if(session('score'))
-            <div class="mt-3">
+        <div class="mt-3" style="background-color: #d4edda; padding: 10px; border-radius: 5px; display: inline-block;">
                 <p>Elért pontszám: <span class="score">8/{{ session('score') }}</span> <i class="fas fa-check"></i></p>
             </div>
         @endif
