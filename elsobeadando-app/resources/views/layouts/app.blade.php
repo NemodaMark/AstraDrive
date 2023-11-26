@@ -24,9 +24,14 @@
 </head>
 <body>
     <style>
-         /* body {
-            /* overflow-y: hidden; Hide vertical scrollbar */
-            /* overflow-x: hidden; Hide horizontal scrollbar */
+             @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Noto Sans', sans-serif
+    }
+
         .profile{
             max-width: 3rem;
             max-height: 3rem;
@@ -68,44 +73,167 @@
                               </svg></button>
 
                               <script>
-                                const themeSwitcher = document.getElementById('btnSwitch');
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    // Function to check the current theme and update the card background color and box-shadow
+                                    const checkTheme = () => {
+                                        const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+                                        const cardElement = document.getElementById('profile');
+                                        const buttonElements = document.querySelectorAll('.neo-button');
 
-                                // Function to toggle the theme
-                                const toggleTheme = () => {
-                                    const currentTheme = document.documentElement.getAttribute('data-bs-theme'); // Moved inside the function
-                                    console.log("Clicked!"); // Debugging statement
-                                    if (currentTheme === 'light') {
-                                        document.documentElement.setAttribute('data-bs-theme', 'dark');
-                                        console.log("Switched to dark theme!"); // Debugging statement
-                                        // Change the following line to the correct asset path for your logo
-                                        document.getElementById('navbarIcon').src = "{{ asset('imgs/logoLight.png') }}";
-                                        Cookies.set('theme', 'dark'); // Save the theme in a cookie
-                                    } else {
-                                        document.documentElement.setAttribute('data-bs-theme', 'light');
-                                        console.log("Switched to light theme!"); // Debugging statement
-                                        // Change the following line to the correct asset path for your logo
-                                        document.getElementById('navbarIcon').src = "{{ asset('imgs/logo.png') }}";
-                                        Cookies.set('theme', 'light'); // Save the theme in a cookie
+                                        if (currentTheme === 'light') {
+                                            console.log('Current theme is light');
+                                            cardElement.style.backgroundColor = '#e4e5f1';
+                                            cardElement.style.boxShadow = '9px 9px 18px #484b6a, -5px -5px 18px #fafafa';
+
+                                            buttonElements.forEach(button => {
+                                                button.style.boxShadow = '4px 4px 16px #484b6a, -2px -2px 16px #fafafa';
+                                                // Handle :active state using mousedown and mouseup events
+                                                button.addEventListener('mousedown', () => {
+                                                    button.style.boxShadow = '6px 6px 27px #484b6a, -6px -6px 27px #fafafa';
+                                                });
+                                                button.addEventListener('mouseup', () => {
+                                                    button.style.boxShadow = '4px 4px 16px #484b6a, -2px -2px 16px #fafafa';
+                                                });
+                                            });
+                                        } else {
+                                            console.log('Current theme is dark');
+                                            cardElement.style.backgroundColor = '#404040';
+                                            cardElement.style.boxShadow = '9px 9px 18px #b3b3b3, -5px -5px 18px #181818';
+
+                                            buttonElements.forEach(button => {
+                                                button.style.boxShadow = '4px 4px 16px #181818, -2px -2px 16px #b3b3b3';
+                                                // Handle :active state using mousedown and mouseup events
+                                                button.addEventListener('mousedown', () => {
+                                                    button.style.boxShadow = '6px 6px 27px #181818, -6px -6px 27px #b3b3b3';
+                                                });
+                                                button.addEventListener('mouseup', () => {
+                                                    button.style.boxShadow = '4px 4px 16px #181818, -2px -2px 16px #b3b3b3';
+                                                });
+                                            });
+                                        }
+                                    };
+
+                                    // Function to toggle the theme
+                                    const toggleTheme = () => {
+                                        const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+                                        const cardElement = document.getElementById('profile');
+                                        const buttonElements = document.querySelectorAll('.neo-button');
+
+                                        console.log("Clicked!");
+                                        if (currentTheme === 'light') {
+                                            document.documentElement.setAttribute('data-bs-theme', 'dark');
+                                            console.log("Switched to dark theme!");
+                                            document.getElementById('navbarIcon').src = "{{ asset('imgs/logoLight.png') }}";
+                                            console.log('Current theme is dark');
+                                            cardElement.style.backgroundColor = '#404040';
+                                            cardElement.style.boxShadow = '9px 9px 18px #b3b3b3, -5px -5px 18px #181818';
+
+                                            buttonElements.forEach(button => {
+                                                button.style.boxShadow = '4px 4px 16px #181818, -2px -2px 16px #b3b3b3';
+                                                // Handle :active state using mousedown and mouseup events
+                                                button.addEventListener('mousedown', () => {
+                                                    button.style.boxShadow = '6px 6px 27px #181818, -6px -6px 27px #b3b3b3';
+                                                });
+                                                button.addEventListener('mouseup', () => {
+                                                    button.style.boxShadow = '4px 4px 16px #181818, -2px -2px 16px #b3b3b3';
+                                                });
+                                            });
+
+                                            Cookies.set('profileBackgroundColor', '#404040');
+                                            Cookies.set('profileBoxShadow', '9px 9px 18px #b3b3b3, -5px -5px 18px #181818');
+
+                                            buttonElements.forEach(button => {
+                                                Cookies.set('buttonBoxShadow', '4px 4px 16px #181818, -2px -2px 16px #b3b3b3');
+                                                // Handle :active state using mousedown and mouseup events
+                                                Cookies.set('buttonActiveBoxShadow', '6px 6px 27px #181818, -6px -6px 27px #b3b3b3');
+                                            });
+
+                                            Cookies.set('theme', 'dark');
+                                        } else {
+                                            document.documentElement.setAttribute('data-bs-theme', 'light');
+                                            console.log("Switched to light theme!");
+                                            document.getElementById('navbarIcon').src = "{{ asset('imgs/logo.png') }}";
+                                            console.log('Current theme is light');
+                                            cardElement.style.backgroundColor = '#e4e5f1';
+                                            cardElement.style.boxShadow = '9px 9px 18px #484b6a, -5px -5px 18px #fafafa';
+
+                                            buttonElements.forEach(button => {
+                                                button.style.boxShadow = '4px 4px 16px #484b6a, -2px -2px 16px #fafafa';
+                                                // Handle :active state using mousedown and mouseup events
+                                                button.addEventListener('mousedown', () => {
+                                                    button.style.boxShadow = '6px 6px 27px #484b6a, -6px -6px 27px #fafafa';
+                                                });
+                                                button.addEventListener('mouseup', () => {
+                                                    button.style.boxShadow = '4px 4px 16px #484b6a, -2px -2px 16px #fafafa';
+                                                });
+                                            });
+
+                                            Cookies.set('profileBackgroundColor', '#e4e5f1');
+                                            Cookies.set('profileBoxShadow', '9px 9px 18px #484b6a, -5px -5px 18px #fafafa');
+
+                                            buttonElements.forEach(button => {
+                                                Cookies.set('buttonBoxShadow', '4px 4px 16px #484b6a, -2px -2px 16px #fafafa');
+                                                // Handle :active state using mousedown and mouseup events
+                                                Cookies.set('buttonActiveBoxShadow', '6px 6px 27px #484b6a, -6px -6px 27px #fafafa');
+                                            });
+
+                                            Cookies.set('theme', 'light');
+                                        }
+                                    };
+
+                                    // Event listener for theme switcher button
+                                    const themeSwitcher = document.getElementById('btnSwitch');
+                                    themeSwitcher.addEventListener('click', () => {
+                                        toggleTheme();
+                                        checkTheme(); // Call the checkTheme function when the theme is toggled
+                                    });
+
+                                    // Check if a theme cookie exists and set the theme accordingly
+                                    const savedTheme = Cookies.get('theme');
+                                    if (savedTheme) {
+                                        document.documentElement.setAttribute('data-bs-theme', savedTheme);
+                                        if (savedTheme === 'dark') {
+                                            document.getElementById('navbarIcon').src = "{{ asset('imgs/logoLight.png') }}";
+                                        } else {
+                                            document.getElementById('navbarIcon').src = "{{ asset('imgs/logo.png') }}";
+                                        }
+                                        console.log("Loaded saved theme:", savedTheme);
+                                        checkTheme(); // Call the checkTheme function when the page is loaded
+
+                                        // Check if a profile background color cookie exists and set the color accordingly
+                                        const savedProfileColor = Cookies.get('profileBackgroundColor');
+                                        if (savedProfileColor) {
+                                            const cardElement = document.getElementById('profile');
+                                            cardElement.style.backgroundColor = savedProfileColor;
+                                            console.log("Loaded saved profile background color:", savedProfileColor);
+                                        }
+
+                                        // Check if a profile box shadow cookie exists and set the box shadow accordingly
+                                        const savedProfileBoxShadow = Cookies.get('profileBoxShadow');
+                                        if (savedProfileBoxShadow) {
+                                            const cardElement = document.getElementById('profile');
+                                            cardElement.style.boxShadow = savedProfileBoxShadow;
+                                            console.log("Loaded saved profile box shadow:", savedProfileBoxShadow);
+                                        }
+
+                                        // Check if a button box shadow cookie exists and set the box shadow accordingly
+                                        const savedButtonBoxShadow = Cookies.get('buttonBoxShadow');
+                                        if (savedButtonBoxShadow) {
+                                            buttonElements.forEach(button => {
+                                                button.style.boxShadow = savedButtonBoxShadow;
+                                                // Handle :active state using mousedown and mouseup events
+                                                button.addEventListener('mousedown', () => {
+                                                    button.style.boxShadow = Cookies.get('buttonActiveBoxShadow');
+                                                });
+                                                button.addEventListener('mouseup', () => {
+                                                    button.style.boxShadow = savedButtonBoxShadow;
+                                                });
+                                            });
+                                            console.log("Loaded saved button box shadow:", savedButtonBoxShadow);
+                                        }
                                     }
-                                };
-
-                                // Event listener for theme switcher button
-                                themeSwitcher.addEventListener('click', toggleTheme);
-
-                                // Check if a theme cookie exists and set the theme accordingly
-                                const savedTheme = Cookies.get('theme');
-                                if (savedTheme) {
-                                    document.documentElement.setAttribute('data-bs-theme', savedTheme);
-                                    // Change the following lines to the correct asset paths for your logos
-                                    if (savedTheme === 'dark') {
-                                        document.getElementById('navbarIcon').src = "{{ asset('imgs/logoLight.png') }}";
-                                    } else {
-                                        document.getElementById('navbarIcon').src = "{{ asset('imgs/logo.png') }}";
-                                    }
-                                    console.log("Loaded saved theme:", savedTheme); // Debugging statement
-                                }
+                                });
                             </script>
-
 
 
                     <!--dark mode end-->
@@ -151,7 +279,6 @@
                                     </form>
                                 </div>
                             </li>
-                            <img src="{{asset('imgs/profilepics/03.png')}}" alt="Avatar" class="profile">
                         @endguest
                     </ul>
                 </div>
