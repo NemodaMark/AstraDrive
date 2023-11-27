@@ -59,10 +59,6 @@ s.com/css2?family=Noto+Sans&display=swap');
                           <li class="nav-item ms-2">
                             <a class="nav-link" href="{{route('quiz.show')}}">Teszt</a>
                           </li>
-
-                          <li class="nav-item ms-2">
-                            <a class="nav-link" href="#" target="blank">Projektről</a>
-                          </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -22,16 +22,16 @@
                                 <div class="row mt-3 mb-3">
 
                                   <div class="col-md-4">
-                                    <h5>Saját járművek</h5>
-                                    <span class="num">10</span>
+                                    <h5>Pontszám</h5>
+                                    <span class="num">{{ Auth::user()->point }}</span>
                                   </div>
                                   <div class="col-md-4">
                                   <h5></h5>
                                     <span class="num"></span>
                                   </div>
                                   <div class="col-md-4">
-                                  <h5>Pontszám</h5>
-                                    <span class="num">10</span>
+                                  <h5>Regisztrált</h5>
+                                    <span class="num">{{ Auth::user()->created_at }}</span>
                                   </div>
 
                                 </div>
