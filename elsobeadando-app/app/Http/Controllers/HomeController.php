@@ -32,4 +32,9 @@ class HomeController extends Controller
         return view('alsites.parkinglot');
     }
 
+    public function edit()
+    {
+        return view('alsites.edit');
+    }
+
 }
