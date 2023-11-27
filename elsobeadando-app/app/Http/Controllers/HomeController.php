@@ -37,6 +37,7 @@ class HomeController extends Controller
     {
         return view('alsites.edit');
     }
+
     public function pictureUpload(Request $request){
         if (session() -> has('user')){
             $data = $request->validate(

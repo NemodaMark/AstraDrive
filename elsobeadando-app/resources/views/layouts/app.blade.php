@@ -55,11 +55,13 @@ s.com/css2?family=Noto+Sans&display=swap');
                         <li class="nav-item ms-5">
                             <a class="nav-link" href="{{route('informations')}}">Astra-lógia</a>
                           </li>
+
                           <li class="nav-item ms-2">
                             <a class="nav-link" href="{{route('quiz.show')}}">Teszt</a>
                           </li>
+
                           <li class="nav-item ms-2">
-                            <a class="nav-link" href="#">Dokumentáció</a>
+                            <a class="nav-link" href="#" target="blank">Projektről</a>
                           </li>
                     </ul>
 
