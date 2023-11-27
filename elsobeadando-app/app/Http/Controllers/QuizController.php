@@ -40,25 +40,32 @@ class QuizController extends Controller
     {
         $questions = DB::table('quiz_questions')->get();
         $totalScore = 0;
-
+    
         foreach ($questions as $question) {
             $selectedAnswer = $request->input('answers.' . $question->id);
             $correctAnswer = $question->correct_answer;
-
+    
             if ($selectedAnswer === $correctAnswer) {
                 $totalScore += 1;
             }
         }
-
+    
         // Store the points in the database for the user
         // (The exact logic depends on the project requirements)
         if ($totalScore > 0) {
+            $userName = auth()->user()->name;
+    
+            // Update quiz_results table
             DB::table('quiz_results')->updateOrInsert(
-                ['user_name' => auth()->user()->name],
-                ['score' => DB::raw('score + ' . $totalScore), 'updated_at' => now()]
+                ['user_name' => $userName],
+                ['score' => $totalScore, 'updated_at' => now()]
             );
+    
+            // Update users table and set points to the new totalScore
+            DB::table('users')->where('id', auth()->user()->id)->update(['point' => $totalScore]);
         }
-
+    
         return redirect()->route('quiz.show')->with('success', 'Quiz submitted successfully!')->with('score', $totalScore);
     }
+    
 }
