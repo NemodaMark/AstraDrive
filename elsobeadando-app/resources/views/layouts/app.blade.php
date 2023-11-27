@@ -87,28 +87,30 @@ s.com/css2?family=Noto+Sans&display=swap');
                                             cardElement.style.boxShadow = '9px 9px 18px #484b6a, -5px -5px 18px #fafafa';
 
                                             buttonElements.forEach(button => {
-                                                button.style.boxShadow = '4px 4px 16px #484b6a, -2px -2px 16px #fafafa';
+                                                button.style.backgroundColor = '#e4e5f1'
+                                                button.style.boxShadow = '4px 4px 16px #484b6a, -1px -1px 8px #fafafa';
                                                 // Handle :active state using mousedown and mouseup events
                                                 button.addEventListener('mousedown', () => {
                                                     button.style.boxShadow = '6px 6px 27px #484b6a, -6px -6px 27px #fafafa';
                                                 });
                                                 button.addEventListener('mouseup', () => {
-                                                    button.style.boxShadow = '4px 4px 16px #484b6a, -2px -2px 16px #fafafa';
+                                                    button.style.boxShadow = '4px 4px 16px #484b6a, -1px -1px 8px #fafafa';
                                                 });
                                             });
                                         } else {
                                             console.log('Current theme is dark');
-                                            cardElement.style.backgroundColor = '#404040';
-                                            cardElement.style.boxShadow = '9px 9px 18px #b3b3b3, -5px -5px 18px #181818';
+                                            cardElement.style.backgroundColor = '#30363d'; /*card body*/
+                                            cardElement.style.boxShadow = '9px 9px 18px #11111b, -5px -5px 18px #1e1e26'; /*DARK*/
 
                                             buttonElements.forEach(button => {
-                                                button.style.boxShadow = '4px 4px 16px #181818, -2px -2px 16px #b3b3b3';
+                                                button.style.backgroundColor = '#30363d'
+                                                button.style.boxShadow = '1px 1px 8px #11111b, -1px -1px 8px #1e1e26'; /*DARK*/
                                                 // Handle :active state using mousedown and mouseup events
                                                 button.addEventListener('mousedown', () => {
-                                                    button.style.boxShadow = '6px 6px 27px #181818, -6px -6px 27px #b3b3b3';
+                                                    button.style.boxShadow = '6px 6px 27px #11111b, -6px -6px 27px #1e1e26'; /*DARK*/
                                                 });
                                                 button.addEventListener('mouseup', () => {
-                                                    button.style.boxShadow = '4px 4px 16px #181818, -2px -2px 16px #b3b3b3';
+                                                    button.style.boxShadow = '1px 1px 8px #11111b, -1px -1px 8px #1e1e26'; /*DARK*/
                                                 });
                                             });
                                         }
@@ -126,27 +128,27 @@ s.com/css2?family=Noto+Sans&display=swap');
                                             console.log("Switched to dark theme!");
                                             document.getElementById('navbarIcon').src = "{{ asset('imgs/logoLight.png') }}";
                                             console.log('Current theme is dark');
-                                            cardElement.style.backgroundColor = '#404040';
-                                            cardElement.style.boxShadow = '9px 9px 18px #b3b3b3, -5px -5px 18px #181818';
+                                            cardElement.style.backgroundColor = '#30363d'; /*card body*/
+                                            cardElement.style.boxShadow = '9px 9px 18px #11111b, -5px -5px 18px #1e1e26'; /*card shadow*/
 
                                             buttonElements.forEach(button => {
                                                 button.style.boxShadow = '4px 4px 16px #181818, -2px -2px 16px #b3b3b3';
                                                 // Handle :active state using mousedown and mouseup events
                                                 button.addEventListener('mousedown', () => {
-                                                    button.style.boxShadow = '6px 6px 27px #181818, -6px -6px 27px #b3b3b3';
+                                                    button.style.boxShadow = '6px 6px 27px #181818, -6px -6px 27px #b3b3b3'; /*button down*/
                                                 });
                                                 button.addEventListener('mouseup', () => {
-                                                    button.style.boxShadow = '4px 4px 16px #181818, -2px -2px 16px #b3b3b3';
+                                                    button.style.boxShadow = '4px 4px 16px #181818, -2px -2px 16px #b3b3b3'; /*button up*/
                                                 });
                                             });
 
-                                            Cookies.set('profileBackgroundColor', '#404040');
-                                            Cookies.set('profileBoxShadow', '9px 9px 18px #b3b3b3, -5px -5px 18px #181818');
+                                            Cookies.set('profileBackgroundColor', '#30363d');   /*card body*/
+                                            Cookies.set('profileBoxShadow', '9px 9px 18px #11111b, -5px -5px 18px #1e1e26'); /*card shadow*/
 
                                             buttonElements.forEach(button => {
-                                                Cookies.set('buttonBoxShadow', '4px 4px 16px #181818, -2px -2px 16px #b3b3b3');
+                                                Cookies.set('buttonBoxShadow', '4px 4px 16px #181818, -2px -2px 16px #b3b3b3'); /*button up*/
                                                 // Handle :active state using mousedown and mouseup events
-                                                Cookies.set('buttonActiveBoxShadow', '6px 6px 27px #181818, -6px -6px 27px #b3b3b3');
+                                                Cookies.set('buttonActiveBoxShadow', '6px 6px 27px #181818, -6px -6px 27px #b3b3b3'); /*button down*/
                                             });
 
                                             Cookies.set('theme', 'dark');
