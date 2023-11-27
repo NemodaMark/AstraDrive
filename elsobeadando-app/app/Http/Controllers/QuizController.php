@@ -1,32 +1,39 @@
 <?php
+
 // app/Http/Controllers/QuizController.php
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
     public function show()
     {
-        $questions = DB::table('quiz_questions')->get();
+        // Check if the user is authenticated
+        if (Auth::check() && Auth::user()->name !== null) {
+            $questions = DB::table('quiz_questions')->get();
 
-        foreach ($questions as &$question) {
-            $answers = [
-                $question->correct_answer,
-                $question->wrong_answer1,
-                $question->wrong_answer2,
-                $question->wrong_answer3,
-            ];
+            foreach ($questions as &$question) {
+                $answers = [
+                    $question->correct_answer,
+                    $question->wrong_answer1,
+                    $question->wrong_answer2,
+                    $question->wrong_answer3,
+                ];
 
-            // Keversz válaszlehetőségeket
-            shuffle($answers);
+                // Shuffle answer options
+                shuffle($answers);
 
-            $question->answers = $answers;
+                $question->answers = $answers;
+            }
+
+            return view('alsites.quiz', compact('questions'));
+        } else {
+            return view('auth.login');
         }
-
-        return view('alsites.quiz', compact('questions'));
     }
 
     public function submit(Request $request)
@@ -43,8 +50,8 @@ class QuizController extends Controller
             }
         }
 
-        // Itt tárold el a pontokat az adatbázisban a felhasználóhoz
-        // (A pontos logika a projekt igényeitől függ)
+        // Store the points in the database for the user
+        // (The exact logic depends on the project requirements)
         if ($totalScore > 0) {
             DB::table('quiz_results')->updateOrInsert(
                 ['user_name' => auth()->user()->name],
