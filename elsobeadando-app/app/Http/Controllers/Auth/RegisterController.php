@@ -8,20 +8,10 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB; // Import the DB facade
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
     /**
@@ -49,10 +39,12 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $randomProfilePic = DB::table('profile_pics')->inRandomOrder()->first();
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'jpg' => $randomProfilePic->jpg,
         ]);
     }
 
@@ -64,10 +56,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // Get a random profile picture from the profile_pics table
+        $randomProfilePic = DB::table('profile_pics')->inRandomOrder()->first();
+
+        // Create a new user with the selected profile picture
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'jpg' => $randomProfilePic->jpg,
+            'point' => 0, // Set a default value for 'point'
         ]);
+
+        return $user;
     }
 }

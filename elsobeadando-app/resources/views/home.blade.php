@@ -15,7 +15,7 @@
                     <div class="container d-flex justify-content-center my-5" style="background-color:">
                         <div class="card p-3 py-4" id="profile">
                             <div class="text-center">
-                            <img src="{{asset('imgs/profilepics/03.png')}}" width="180" class="rounded-circle">
+                                <img src="{{ asset('imgs/profilepics/' . Auth::user()->jpg) }}" width="180" class="rounded-circle">
                                 <h3 class="mt-2">{{ Auth::user()->name }}</h3>
                                 <span class="mt-1 clearfix">{{ Auth::user()->email }}</span>
 

@@ -13,17 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('profile_pics', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->integer('point')->default(0);
             $table->string('jpg');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
         });
+        DB::table('profile_pics')->insert([
+            ['jpg' => '01.jpg'],
+            ['jpg' => '02.jpg'],
+            ['jpg' => '03.jpg'],
+            ['jpg' => '04.jpg'],
+            ['jpg' => '05.jpg'],
+            ['jpg' => '06.jpg'],
+            ['jpg' => '07.jpg'],
+            ['jpg' => '08.jpg'],
+            ['jpg' => '09.jpg'],
+            ['jpg' => '10.jpg']
+        ]);
     }
 
     /**
@@ -33,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('profile_pics');
     }
 };
