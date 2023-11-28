@@ -35,7 +35,11 @@ Route::get('/', function () {
 
     /*Profile Page*/
     Route::get('/edit', [App\Http\Controllers\HomeController::class, 'edit'])->name('edit');
+    use App\Http\Controllers\HomeController;
+    Route::get('/picture/change/{jpg}', [HomeController::class, 'pictureChange'])->name('picture.change');
+
     Route::get('/parkinglot', [App\Http\Controllers\HomeController::class, 'parkinglot'])->name('parkinglot');
+
 
 
 // Route::put('/themes', function(Request $request) {
