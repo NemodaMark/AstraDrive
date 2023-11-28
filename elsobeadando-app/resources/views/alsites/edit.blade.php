@@ -1,54 +1,77 @@
 @extends('layouts.app')
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-md-8">
+<div class="row my-3">
+    <div class="col-sm-6 d-flex align-items-stretch">
+        <div class="card mx-3 my-3">
+            <div class="card-body position-relative">
+                <h5 class="card-title">Profilkép</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <div class="row">
 
-<form id="profilePictureForm" enctype="multipart/form-data">
-    <input type="file" id="profilePictureInput" accept="image/*" onchange="previewImage()">
-    <img id="previewImage" src="#" alt="Preview" style="display:none; max-width: 300px; max-height: 300px;">
-    <button type="button" onclick="uploadProfilePicture()">Upload</button>
-</form>
+                    @for ($i = 0; $i < 10; $i++)
+                    <div class="col">
+                        <!-- Add the 'profile-pic' class, 'data-name' attribute, and 'clicked' id -->
+                        <img src="{{ asset('imgs/profilepics/' . Auth::user()->jpg) }}" class="my-2 mx-1 profile-pic" data-name="{{ Auth::user()->jpg }}" id="clicked">
+                    </div>
+                    @endfor
 
+                </div>
+                <a href="#" class="btn btn-warning px-2 position-absolute bottom-0 start-50 translate-middle-x my-3">Profilkép cseréje</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 d-flex align-items-stretch">
+        <div class="card mx-3 my-3">
+            <div class="card-body">
+                <h5 class="card-title">Leírás</h5>
+                <p class="card-text">Itt tudod átírni a fiókodon található leírást</p>
+                <div class="form-floating">
+                    <textarea class="form-control my-4" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 300px"></textarea>
+                    <label for="floatingTextarea2">Leírásod</label>
+                </div>
+                <a href="#" class="btn btn-warning px-2 position-absolute bottom-0 start-50 my-3">Új leírás mentése</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    img {
+        max-width: 130px;
+        max-height: 130px;
+        cursor: pointer; /* Add cursor pointer for better UX */
+    }
+
+    img.clicked {
+        border: 5px solid yellow;
+    }
+</style>
+
+<!-- Add this script to your HTML file -->
 <script>
-    function previewImage() {
-        const input = document.getElementById('profilePictureInput');
-        const preview = document.getElementById('previewImage');
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get all the image elements
+        var images = document.querySelectorAll('.profile-pic');
 
-        const file = input.files[0];
+        // Add a click event listener to each image
+        images.forEach(function (image) {
+            image.addEventListener('click', function () {
+                // Remove the 'clicked' class from all images
+                images.forEach(function (img) {
+                    img.classList.remove('clicked');
+                });
 
-        if (file) {
-            const reader = new FileReader();
+                // Get the name attribute of the clicked image
+                var imageName = image.getAttribute('data-name');
 
-            reader.onload = function (e) {
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-            };
+                // Log the name to the console
+                console.log('Clicked Image Name:', imageName);
 
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = '#';
-            preview.style.display = 'none';
-        }
-    }
-
-    function uploadProfilePicture() {
-        const input = document.getElementById('profilePictureInput');
-        const file = input.files[0];
-
-        if (file) {
-            // You can perform the file upload logic here, such as sending the file to a server using AJAX.
-            // For simplicity, let's just log the file details to the console.
-            console.log('Uploading file:', file);
-
-            // Reset the form after upload
-            document.getElementById('profilePictureForm').reset();
-            document.getElementById('previewImage').style.display = 'none';
-        } else {
-            alert('Please select a file to upload.');
-        }
-    }
+                // Add the 'clicked' class to the clicked image
+                image.classList.add('clicked');
+            });
+        });
+    });
 </script>
 
-</div>
-</div>
 @endsection
