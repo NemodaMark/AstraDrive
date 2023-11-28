@@ -6,17 +6,16 @@
         <div class="card mx-3 my-3">
             <div class="card-body position-relative">
                 <h5 class="card-title">Profilkép</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text">Kattints rá a kívánt képre, amint megvagy, ez lesz az új profilképed</p>
                 <div class="row">
                     @foreach ($pictures as $pic)
-                    <div class="col">
-                        <a href="{{ route('picture.change', ['jpg' => $pic->jpg]) }}" class="my-2 mx-1 profile-pic">
+                    <div class="col my-2 ">
+                        <a href="{{ route('picture.change', ['jpg' => $pic->jpg]) }}" class="my-3 mx-2 profile-pic">
                             <img src="{{ asset('imgs/profilepics/' . $pic->jpg) }}" class="{{ Auth::user()->jpg == $pic->jpg ? 'clicked' : '' }}" data-name="{{ $pic->jpg }}">
                         </a>
                     </div>
                     @endforeach
                 </div>
-                <a href="#" class="btn btn-warning px-2 position-absolute bottom-0 start-50 translate-middle-x my-3">Profilkép cseréje</a>
             </div>
         </div>
     </div>
