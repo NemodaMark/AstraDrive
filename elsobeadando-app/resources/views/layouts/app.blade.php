@@ -292,6 +292,7 @@ s.com/css2?family=Noto+Sans&display=swap');
             <div class="container">
                 @yield('content')
             </div>
+         @include('footer')
         </main>
     </div>
 </body>
