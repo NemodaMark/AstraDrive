@@ -25,10 +25,12 @@
                 <h5 class="card-title">Leírás</h5>
                 <p class="card-text">Itt tudod átírni a fiókodon található leírást</p>
                 <div class="form-floating">
-                    <textarea class="form-control my-4" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 300px"></textarea>
-                    <label for="floatingTextarea2">Leírásod</label>
+                    <form method="POST" action="{{ route('description.change') }}">
+                        @csrf
+                    <textarea class="form-control my-4" placeholder="Leírás megadása" id="floatingTextarea2" name="floatingTextarea2" style="width: 300px; height: 500px;"></textarea>
                 </div>
-                <a href="#" class="btn btn-warning px-2 position-absolute bottom-0 start-50 my-3">Új leírás mentése</a>
+                <button type="submit" class="btn btn-warning px-2 position-absolute bottom-0 start-50 my-3">Leírás mentése</button>
+            </form>
             </div>
         </div>
     </div>
@@ -44,6 +46,7 @@
     img.clicked {
         border: 5px solid yellow;
     }
+
 </style>
 
 @endsection

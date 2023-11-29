@@ -38,7 +38,7 @@
 
                                 <hr class="line">
 
-                                <small class="mt-4">Leírás</small>
+                                <small class="mt-4">{{ Auth::user()->description }}</small>
                                   <div class="social-buttons mt-5">
                                    <button class="neo-button">
                                     <a href="{{ route('edit') }}">

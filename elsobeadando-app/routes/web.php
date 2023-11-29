@@ -37,8 +37,9 @@ Route::get('/', function () {
 
     /*Profile Page*/
     Route::get('/edit', [App\Http\Controllers\HomeController::class, 'edit'])->name('edit');
-    use App\Http\Controllers\HomeController;
-    Route::get('/picture/change/{jpg}', [HomeController::class, 'pictureChange'])->name('picture.change');
+
+    Route::get('/picture/change/{jpg}', [App\Http\Controllers\HomeController::class, 'pictureChange'])->name('picture.change');
+    Route::post('/description/change', [App\Http\Controllers\HomeController::class, 'changeDescription'])->name('description.change');
 
     Route::get('/parkinglot', [App\Http\Controllers\HomeController::class, 'parkinglot'])->name('parkinglot');
 

@@ -44,14 +44,21 @@ class HomeController extends Controller
     }
 
     public function pictureChange($jpg)
-{
-    // Assuming you want to update the 'jpg' column in the 'users' table
-    $userId = Auth::id(); // Get the authenticated user's ID
+    {
+        $userId = Auth::id();
+        DB::table('users')->where('id', $userId)->update(['jpg' => $jpg]);
 
-    // Your update query to change the 'jpg' value
-    DB::table('users')->where('id', $userId)->update(['jpg' => $jpg]);
+        return redirect()->back()->with('success', 'Profilkép sikeresen megváltoztatva');
+    }
 
-    return redirect()->back()->with('success', 'Profilkép sikeresen megváltoztatva');
-}
+    public function changeDescription(Request $request)
+    {
+        $floatingTextarea2 = $request->input('floatingTextarea2');
+        $userId = Auth::id();
+        DB::table('users')->where('id', $userId)->update(['description' => $floatingTextarea2]);
+
+        return redirect()->back()->with('success', 'A Leírásod sikeresen megváltoztatva');
+    }
+
 
 }
