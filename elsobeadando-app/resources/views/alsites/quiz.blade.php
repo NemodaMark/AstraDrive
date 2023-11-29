@@ -11,6 +11,12 @@
                 margin-bottom: 20px;
                 border: 1px solid #ccc;
             }
+            .bg-light-green {
+    background-color: #d1f7d4; /* Halványzöld háttérszín */
+    color: #28a745; /* Zöld szövegszín */
+    border: 1px solid #28a745; /* Zöld keret */
+    border-radius: 5px; /* Kerekített sarkok */
+}
         </style>
 
         <form action="{{ route('quiz.submit') }}" method="post">
@@ -38,14 +44,14 @@
 </svg> Válaszok beküldése</button>
             </div>
         </form>
-        @if(session('score'))
-        <div class="mt-3" style="background-color: #d4edda; padding: 10px; border-radius: 5px; display: inline-block;">
-                <p>Elért pontszám: <span class="score">{{ session('score') }} </span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
-  <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
-  <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
-</svg></p>
-            </div>
-        @endif
     </div>
 </div>
+@if(session('score'))
+    <div class="score-box mt-4 mb-4 p-3 bg-light-green">
+        Elért pontszám: {{ session('score') }} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+  <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
+  <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+</svg>
+    </div>
+@endif
 @endsection

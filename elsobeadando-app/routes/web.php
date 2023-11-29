@@ -32,6 +32,8 @@ Route::get('/', function () {
     /*quiz*/
     Route::get('/quiz', [QuizController::class, 'show'])->name('quiz.show');
     Route::post('/quiz/submit', [QuizController::class, 'submit'])->name('quiz.submit');
+    Route::post('/quiz/save-results/{score}', [QuizController::class, 'saveResults']);
+
 
     /*Profile Page*/
     Route::get('/edit', [App\Http\Controllers\HomeController::class, 'edit'])->name('edit');

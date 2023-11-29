@@ -14,7 +14,7 @@ class QuizController extends Controller
     {
         // Check if the user is authenticated
         if (Auth::check() && Auth::user()->name !== null) {
-            $questions = DB::table('quiz_questions')->get();
+            $questions = DB::table('quiz_questions')->inRandomOrder()->limit(10)->get();
 
             foreach ($questions as &$question) {
                 $answers = [
