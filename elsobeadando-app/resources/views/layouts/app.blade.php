@@ -63,7 +63,7 @@ s.com/css2?family=Noto+Sans&display=swap');
                           </li>
 
                           <li class="nav-item ms-2">
-                            <a class="nav-link" href="{{route('documentary')}}">Teszt</a>
+                            <a class="nav-link" href="{{route('documentary')}}">Dokumentáció</a>
                           </li>
                     </ul>
 
