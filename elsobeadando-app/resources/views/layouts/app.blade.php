@@ -21,6 +21,8 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3/dist/js.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.0.1/mammoth.browser.min.js"></script>
+
 </head>
 <body>
 
@@ -58,6 +60,10 @@ s.com/css2?family=Noto+Sans&display=swap');
 
                           <li class="nav-item ms-2">
                             <a class="nav-link" href="{{route('quiz.show')}}">Teszt</a>
+                          </li>
+
+                          <li class="nav-item ms-2">
+                            <a class="nav-link" href="{{route('documentary')}}">Dokumentáció</a>
                           </li>
                     </ul>
 

@@ -61,6 +61,10 @@
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Elfelejtett jelszó') }}
                                     </a>
+                                    <br>
+                                    <a class="btn btn-link" href="{{ route('register') }}">
+                                        {{ __('Regisztrálj itt') }}
+                                    </a>
                                 @endif
                             </div>
                         </div>

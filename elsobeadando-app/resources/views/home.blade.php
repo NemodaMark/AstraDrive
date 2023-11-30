@@ -30,8 +30,8 @@
                                     <span class="num"></span>
                                   </div>
                                   <div class="col-md-4">
-                                  <h5>Regisztrált</h5>
-                                    <span class="num">{{ Auth::user()->created_at }}</span>
+                                  <h5>Autóim</h5>
+                                    <span>{{ $userCar }}</span>
                                   </div>
 
                                 </div>
