@@ -42,6 +42,16 @@ Route::get('/', function () {
     Route::post('/description/change', [App\Http\Controllers\HomeController::class, 'changeDescription'])->name('description.change');
 
     Route::get('/parkinglot', [App\Http\Controllers\HomeController::class, 'parkinglot'])->name('parkinglot');
+    Route::get('/addCar', [App\Http\Controllers\HomeController::class, 'addCar'])->name('addCar');
+    Route::post('/addCarToUser', [App\Http\Controllers\HomeController::class, 'addCarToUser'])->name('addCarToUser');
+    ;
+
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('/editCar/{carID}', [App\Http\Controllers\HomeController::class, 'editCarToUser'])->name('editCar');
+        Route::post('/editCar/{carID}', [App\Http\Controllers\HomeController::class, 'updateCarToUser'])->name('updateCar');
+        Route::get('/deleteCar/{carID}', [App\Http\Controllers\HomeController::class, 'deleteCarToUser'])->name('deleteCar');
+    });
+
 
 
 

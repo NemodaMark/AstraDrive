@@ -17,11 +17,16 @@ return new class extends Migration
         $table->id();
         $table->unsignedBigInteger('userID');
         $table->unsignedBigInteger('carID');
+        $table->unsignedBigInteger('fuelID');
+        $table->unsignedBigInteger('chassiID');
         $table->timestamps();
 
         // Correct the foreign key reference to 'cars' table
         $table->foreign('userID')->references('id')->on('users')->onDelete('cascade');
         $table->foreign('carID')->references('id')->on('cars')->onDelete('cascade');
+
+        $table->foreign('fuelID')->references('id')->on('fuels')->onDelete('cascade');
+        $table->foreign('chassiID')->references('id')->on('chassis')->onDelete('cascade');
     });
 }
 
@@ -38,6 +43,8 @@ return new class extends Migration
         Schema::table('users_cars', function (Blueprint $table) {
             $table->dropForeign(['userID']);
             $table->dropForeign(['carID']);
+            $table->dropForeign(['fuelID']);
+            $table->dropForeign(['chassiID']);
         });
 
         Schema::dropIfExists('users_cars');
